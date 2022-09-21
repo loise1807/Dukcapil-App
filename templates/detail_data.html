@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block body %}
+  <div class='row'>
+    <div class='col-5 mx-auto'>
+      <h3>Detail Data</h3><hr>
+        <div class='form-group'>
+          <label><b>Nomor Induk Kependudukan</b></label><br>
+          <label for="{{datas.nik}}">{{datas.nik}}</label>
+        </div>
+        <div class='form-group'>
+          <label><b>Nama</b></label><br>
+          <label for="{{datas.name}}">{{datas.name}}</label>
+        </div>
+        <div class='form-group'>
+            <label><b>Nama Panggilan</b></label><br>
+            <label for="{{datas.maiden_name}}">{{datas.maiden_name}}</label>
+        </div>
+        <div class='form-group'>
+            <label><b>Tanggal Lahir</b></label><br>
+            <label for="{{datas.birth_date}}">{{datas.birth_date}}</label>
+        </div>
+        <div class='form-group'>
+            <label><b>Jenis_kelaim</b></label><br>
+            {% if datas.gender == 'M'%}
+            <label for="{{datas.gender}}">Pria</label>
+            {% else %}
+            <label for="{{datas.gender}}">Wanita</label>
+            {% endif %}
+        </div>
+        <div class='form-group'>
+            <label><b>Agama</b></label><br>
+            <label for="{{datas.religion_name}}">{{datas.religion_name}}</label>
+        </div>
+        <div class='form-group'>
+            <label><b>Status Perkawinan</b></label><br>
+            <label for="{{datas.marital_status_desc}}">{{datas.marital_status_desc}}</label>
+          </select>
+        </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% block body %}
+  <h3 class='text-center text-muted mb-3'>Data Dukcapil</h3>
+  <p class='text-right'><a href='{{url_for("add_data")}}' class='btn btn-success '>+Add Data</a></p>
+  <label class="form-label"><a href='{{url_for("index_history")}}' class="btn btn-warning"> History </a></label>
+  <form action='{{url_for("index")}}'method="POST">
+    <div class="mb-3">
+      <label class="form-label">Cari Nomor Induk Kependudukan</label>
+      <input type="text" class="form-control col-md-3" id="nik" name="nik" placeholder="1211...">
+      <input type='submit' value='Cari' class='btn btn-primary mt-2'>
+    </div>
+  </form>
+  {% if datas %}
+  <table class='table table-bordered'>
+    <thead>
+      <th>SNo</th>
+      <th>NIK</th>
+      <th>Nama</th>
+      <th>Nama Panggilan</th>
+      <th>Tanggal Lahir</th>
+      <th>Jenis Kelamin</th>
+      <th>Agama</th>
+      <th>Status Perkawinan</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </thead>
+    <tbody>
+      {% for row in datas %}
+        <tr>
+          <td>{{loop.index}}</td>
+          <td>
+            <a href='{{url_for("detail_data",nik=row.nik)}}'>{{row.nik}}</a>
+            
+          </td>
+          <td>{{row.name}}</td>
+          <td>{{row.maiden_name}}</td>
+          <td>{{row.birth_date}}</td>
+          {% if row.gender == 'M' %}
+          <td>Pria</td>
+          {% else %}
+          <td>Wanita</td>
+          {% endif %}
+          <td>{{row.religion_name}}</td>
+          <td>{{row.marital_status_desc}}</td>
+          <td><a href='{{url_for("edit_data",m_dukcapil_data_id=row.m_dukcapil_data_id)}}' class='btn btn-primary'>Edit</a></td>
+          <td><a href='{{url_for("delete_data",m_dukcapil_data_id=row.m_dukcapil_data_id)}}' class='btn btn-danger' onclick='return confirm("Are You Sure")'>Delete</a></td>
+        </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  {% else %}
+  <h6>We dont have Data</h6>
+  {% endif %}
+{% endblock %}

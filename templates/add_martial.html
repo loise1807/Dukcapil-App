@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div class='row'>
+    <div class='col-5 mx-auto'>
+      <h3>Add Martial Status</h3><hr>
+      <ul class="list-group list-group-flush" id="notes">
+        {% for row in datas %}
+        <li class="list-group-item">
+          {{row.marital_status_desc}}
+        </li>
+        {% endfor %}
+      </ul>
+      <form method='POST' action='{{url_for("add_martial")}}'>
+        <div class='form-group'>
+          <label>Martial Status Desc</label>
+          <input type='text' name='marital_status_desc' id="marital_status_desc" required class='form-control'>
+        </div>
+        <input type='submit' value='Submit' class='btn btn-primary'>
+      </form>
+    
+    </div>
+  </div>
+{% endblock %}

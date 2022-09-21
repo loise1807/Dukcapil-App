@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+{% block body %}
+  <div class='row'>
+    <div class='col-5 mx-auto'>
+      <h3>Edit Data</h3><hr>
+      <form method='post' action='{{url_for("edit_data",m_dukcapil_data_id=datas.m_dukcapil_data_id)}}'>
+        <div class='form-group'>
+          <label>Nomor Induk Kependudukan</label>
+          <input type='text' name='nik' required class='form-control' value='{{datas.nik}}'>
+        </div>
+        <div class='form-group'>
+          <label>Nama</label>
+          <input type='text' name='name' required class='form-control' value='{{datas.name}}'>
+        </div>
+        <div class='form-group'>
+          <label>Nama Panggilan</label>
+          <input type='text' name='maiden_name' required class='form-control' value='{{datas.maiden_name}}'>
+        </div>
+        <div class='form-group'>
+          <label>Tanggal Lahir</label>
+          <input type='date' name='birth_date' required class='form-control' value='{{datas.birth_date}}'>
+        </div>
+        <div class='form-group'>
+          <label>Jenis Kelamin</label>
+          {% if datas.gender == 'M'%}
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="gender" value="M" checked>
+            <label class="form-check-label" for="gender">
+              Pria
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="gender" value="F">
+            <label class="form-check-label" for="gender">
+              Wanita
+            </label>
+          </div>
+            {% else %}
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" id="gender" value="M" >
+              <label class="form-check-label" for="gender">
+                Pria
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" id="gender" value="F" checked>
+              <label class="form-check-label" for="gender">
+                Wanita
+              </label>
+            </div>
+            {% endif %}
+        </div>
+        <div class='form-group'>
+          <label>Agama</label>
+          <select id="religion_id" name="religion_id">
+            {% for row in dataR %}
+            {% if row.religion_id == datas.religion_id %}
+            <option value="{{row.religion_id}}" selected>{{row.religion_name}}</option>
+            {% else %}
+            <option value="{{row.religion_id}}">{{row.religion_name}}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <div class='form-group'>
+          <label>Status Perkawinan</label>
+          <select id="martial_status" name="martial_status">
+            {% for row2 in dataM %}
+            {% if row2.m_marital_status_id == datas.martial_status %}
+            <option value="{{row2.m_marital_status_id}}" selected>{{row2.marital_status_desc}}</option>
+            {% else %}
+            <option value="{{row2.m_marital_status_id}}">{{row2.marital_status_desc}}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+
+        <input type='submit' value='Submit' class='btn btn-primary'>
+      </form>
+    </div>
+  </div>
+{% endblock %}

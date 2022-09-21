@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block body %}
+  <h3 class='text-center text-muted mb-3'>Riwayat Pencarian</h3>
+  <label class="form-label"><a href='{{url_for("index")}}' class="btn btn-warning"> Kembali </a></label>
+  {% if datas %}
+  <table class='table table-bordered'>
+    <thead>
+      <th>No</th>
+      <th>Isi Pencarian</th>
+      <th>Waktu Pencarian</th>
+    </thead>
+    <tbody>
+      {% for row in datas %}
+        <tr>
+          <td>{{loop.index}}</td>
+          <td>{{row.nik_search}}</td>
+          <td>{{row.time_search}}</td>
+        </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  {% else %}
+  <h6>We dont have Data</h6>
+  {% endif %}
+{% endblock %}
